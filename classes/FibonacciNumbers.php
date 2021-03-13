@@ -57,8 +57,3 @@ class FibonacciNumbers
 
 }
 
-$obj = new FibonacciNumbers();
-$obj->setLastNumber(64);
-$number = $obj->setFirstNumbers();
-print_r($number);
-
