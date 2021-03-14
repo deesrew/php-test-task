@@ -13,7 +13,7 @@ $obj->setLastNumber(64);
 $number = $obj->setFirstNumbers();
 var_dump($obj->getNumbers());
 
-//Задание 2
+// второе задание
 Library::getAuthorsFromQuery();
 
 // третье задание
