@@ -12,13 +12,12 @@ spl_autoload_register(function ($class) {
 //$obj->setLastNumber(64);
 //$number = $obj->setFirstNumbers();
 
+
+
 // третье задание
-$obj = new Figures();
-$obj->setFigures();
+//$obj = new Figures();
+//$obj->generateFigures();
+//$obj->saveObjFiguresInFile();
 //var_dump($obj->getFigures());
-
-$circle = new Circle(2);
-$obj->saveObjFiguresInFile([$circle]);
-
-$objects = $obj->getFigures();
-var_dump($objects);
+//$obj->sortFiguresBySquare();
+//var_dump($obj->getFigures());

@@ -2,11 +2,27 @@
 
 class Circle extends Figures implements iFigure, JsonSerializable
 {
-    private $type;
+    use FigureType;
+
+    /**
+     * Раудиус фигуры
+     */
     private $r;
 
-    public function __construct($r)
+    /**
+     * Circle constructor.
+     * @param false $r
+     * @throws Exception
+     */
+    public function __construct($r = false)
     {
+        /*
+         * Валидация сторон фигуры
+         */
+        if ($r && !is_numeric($r)) {
+            throw new Exception('Радиус - не число');
+        }
+
         $this->setR($r);
         $this->setType();
     }
@@ -22,34 +38,19 @@ class Circle extends Figures implements iFigure, JsonSerializable
     /**
      * @param mixed $r
      */
-    public function setR($r): void
+    public function setR($r = false): void
     {
-        $this->r = $r;
+        $this->r = $r ?: rand(
+                self::MIN_SIDE_LENGTH * pow(10, self::FRACTIONAL_NUMBER),
+                self::MAX_SIDE_LENGTH * pow(10, self::FRACTIONAL_NUMBER)) /
+            pow(10, self::FRACTIONAL_NUMBER);
     }
 
     /**
-     * @return mixed
+     * Получаем площадь фигуры
+     *
+     * @return float
      */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    public function setType(): void
-    {
-        $this->type = lcfirst(__CLASS__);
-    }
-
-    public function __sleep(): array
-    {
-        return array('type', 'r');
-    }
-
-    public function __wakeup(): array
-    {
-        return array('type', 'r');
-    }
-
     public function getSquare(): float
     {
         $r = $this->r;
@@ -57,14 +58,26 @@ class Circle extends Figures implements iFigure, JsonSerializable
         return round($square, 2);
     }
 
+    /**
+     * Возвращаемые поля при json_encode
+     *
+     * @return array
+     */
     public function jsonSerialize(): array
     {
         return array(
-            'type'  => $this->type,
+            'type' => $this->type,
             'r' => $this->r
         );
     }
 
+    /**
+     * Инициализация объекта класса после json_decode
+     *
+     * @param stdClass $entry
+     * @return Circle
+     * @throws Exception
+     */
     public static function fromStdClass(stdClass $entry): Circle
     {
         return new self($entry->r);

@@ -1,19 +1,37 @@
 <?php
 
-class Rectangle extends Figures implements iFigure
+class Rectangle extends Figures implements iFigure, JsonSerializable
 {
+    use FigureType;
+
+    /**
+     * Ширина фигуры
+     */
     private $a;
+
+    /**
+     * Длина фигуры
+     */
     private $b;
 
-    public function __construct($a, $b)
+    /**
+     * Rectangle constructor.
+     * @param false $a
+     * @param false $b
+     * @throws Exception
+     */
+    public function __construct($a = false, $b = false)
     {
+        /*
+         * Валидация сторон фигуры
+         */
+        if (($a && !is_numeric($a)) || ($b && !is_numeric($b))) {
+            throw new Exception('Какая-то из сторон фигуры - не число');
+        }
+
         $this->setA($a);
         $this->setB($b);
-    }
-
-    public function getSquare()
-    {
-        return $this->a * $this->b;
+        $this->setType();
     }
 
     /**
@@ -29,7 +47,10 @@ class Rectangle extends Figures implements iFigure
      */
     public function setA($a): void
     {
-        $this->a = $a;
+        $this->a = $a ?: rand(
+                self::MIN_SIDE_LENGTH * pow(10, self::FRACTIONAL_NUMBER),
+                self::MAX_SIDE_LENGTH * pow(10, self::FRACTIONAL_NUMBER)) /
+            pow(10, self::FRACTIONAL_NUMBER);
     }
 
     /**
@@ -45,12 +66,46 @@ class Rectangle extends Figures implements iFigure
      */
     public function setB($b): void
     {
-        $this->b = $b;
+        $this->b = $b ?: rand(
+                self::MIN_SIDE_LENGTH * pow(10, self::FRACTIONAL_NUMBER),
+                self::MAX_SIDE_LENGTH * pow(10, self::FRACTIONAL_NUMBER)) /
+            pow(10, self::FRACTIONAL_NUMBER);
     }
 
-    public function __sleep(): array
+    /**
+     * Получаем площадь фигуры
+     *
+     * @return float|int
+     */
+    public function getSquare()
     {
-        return array('a', 'b');
+        return $this->a * $this->b;
+    }
+
+    /**
+     * Возвращаемые поля при json_encode
+     *
+     * @return array
+     */
+    public function jsonSerialize(): array
+    {
+        return array(
+            'type' => $this->type,
+            'a' => $this->a,
+            'b' => $this->b,
+        );
+    }
+
+    /**
+     * Инициализация объекта класса после json_decode
+     *
+     * @param stdClass $entry
+     * @return Rectangle
+     * @throws Exception
+     */
+    public static function fromStdClass(stdClass $entry): Rectangle
+    {
+        return new self($entry->a, $entry->b);
     }
 
 }
