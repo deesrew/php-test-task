@@ -48,4 +48,9 @@ class Rectangle extends Figures implements iFigure
         $this->b = $b;
     }
 
+    public function __sleep(): array
+    {
+        return array('a', 'b');
+    }
+
 }

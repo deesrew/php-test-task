@@ -15,7 +15,7 @@ class FibonacciNumbers
      */
     public function getLastNumber()
     {
-        return $this->lastNumber;
+        return $this->lastNumber + 1;
     }
 
     /**

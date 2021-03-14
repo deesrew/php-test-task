@@ -8,17 +8,17 @@ spl_autoload_register(function ($class) {
 });
 
 // первое задание
-$obj = new FibonacciNumbers();
-$obj->setLastNumber(64);
-$number = $obj->setFirstNumbers();
+//$obj = new FibonacciNumbers();
+//$obj->setLastNumber(64);
+//$number = $obj->setFirstNumbers();
 
 // третье задание
-$obj = new Rectangle(2,4);
-$square = $obj->getSquare();
+$obj = new Figures();
+$obj->setFigures();
+//var_dump($obj->getFigures());
 
-var_dump($obj);
+$circle = new Circle(2);
+$obj->saveObjFiguresInFile([$circle]);
 
-$objArr[] = $obj;
-
-
-Figures::saveObjFiguresInFile($objArr);
+$objects = $obj->getFigures();
+var_dump($objects);
