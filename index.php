@@ -8,18 +8,18 @@ spl_autoload_register(function ($class) {
 });
 
 // первое задание
-$obj = new FibonacciNumbers();
-$obj->setLastNumber(64);
-$number = $obj->setFirstNumbers();
-var_dump($obj->getNumbers());
+$fibonacci = new FibonacciNumbers();
+$fibonacci->setLastNumber(64);
+$fibonacci->setFirstNumbers();
+var_dump($fibonacci->getNumbers());
 
 // второе задание
 Library::getAuthorsFromQuery();
 
 // третье задание
-$obj = new Figures();
-$obj->generateFigures();
-$obj->saveObjFiguresInFile();
-var_dump($obj->getFigures());
-$obj->sortFiguresBySquare();
-var_dump($obj->getFigures());
+$figures = new Figures();
+$figures->generateFigures();
+$figures->saveObjFiguresInFile();
+var_dump($figures->getFigures());
+$figures->sortFiguresBySquare();
+var_dump($figures->getFigures());
