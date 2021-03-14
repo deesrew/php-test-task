@@ -168,7 +168,7 @@ class Figures
     final public function sortFiguresBySquare()
     {
         usort($this->figures, function ($figureOne, $figureTwo) {
-            return ($figureOne->getSquare() - $figureTwo->getSquare());
+            return ($figureTwo->getSquare() - $figureOne->getSquare());
         });
     }
 
