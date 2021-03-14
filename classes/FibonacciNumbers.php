@@ -15,7 +15,7 @@ class FibonacciNumbers
      */
     public function getLastNumber()
     {
-        return $this->lastNumber;
+        return $this->lastNumber + 1;
     }
 
     /**
@@ -56,9 +56,4 @@ class FibonacciNumbers
     }
 
 }
-
-$obj = new FibonacciNumbers();
-$obj->setLastNumber(64);
-$number = $obj->setFirstNumbers();
-print_r($number);
 
