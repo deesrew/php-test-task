@@ -47,10 +47,7 @@ class Rectangle extends Figures implements iFigure, JsonSerializable
      */
     public function setA($a): void
     {
-        $this->a = $a ?: rand(
-                self::MIN_SIDE_LENGTH * pow(10, self::FRACTIONAL_NUMBER),
-                self::MAX_SIDE_LENGTH * pow(10, self::FRACTIONAL_NUMBER)) /
-            pow(10, self::FRACTIONAL_NUMBER);
+        $this->a = $a ?: $this->getRandSide();
     }
 
     /**
@@ -66,10 +63,7 @@ class Rectangle extends Figures implements iFigure, JsonSerializable
      */
     public function setB($b): void
     {
-        $this->b = $b ?: rand(
-                self::MIN_SIDE_LENGTH * pow(10, self::FRACTIONAL_NUMBER),
-                self::MAX_SIDE_LENGTH * pow(10, self::FRACTIONAL_NUMBER)) /
-            pow(10, self::FRACTIONAL_NUMBER);
+        $this->b = $b ?: $this->getRandSide();
     }
 
     /**

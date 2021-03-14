@@ -61,10 +61,7 @@ class Triangle extends Figures implements iFigure, JsonSerializable
      */
     public function setA($a = false): void
     {
-        $this->a = $a ?: rand(
-                self::MIN_SIDE_LENGTH * pow(10, self::FRACTIONAL_NUMBER),
-                self::MAX_SIDE_LENGTH * pow(10, self::FRACTIONAL_NUMBER)) /
-            pow(10, self::FRACTIONAL_NUMBER);
+        $this->a = $a ?: $this->getRandSide();
     }
 
     /**
@@ -80,10 +77,7 @@ class Triangle extends Figures implements iFigure, JsonSerializable
      */
     public function setB($b = false): void
     {
-        $this->b = $b ?: rand(
-                self::MIN_SIDE_LENGTH * pow(10, self::FRACTIONAL_NUMBER),
-                self::MAX_SIDE_LENGTH * pow(10, self::FRACTIONAL_NUMBER)) /
-            pow(10, self::FRACTIONAL_NUMBER);
+        $this->b = $b ?: $this->getRandSide();
     }
 
     /**
@@ -99,10 +93,7 @@ class Triangle extends Figures implements iFigure, JsonSerializable
      */
     public function setC($c = false): void
     {
-        $this->c = $c ?: rand(
-                self::MIN_SIDE_LENGTH * pow(10, self::FRACTIONAL_NUMBER),
-                self::MAX_SIDE_LENGTH * pow(10, self::FRACTIONAL_NUMBER)) /
-            pow(10, self::FRACTIONAL_NUMBER);
+        $this->c = $c ?: $this->getRandSide();
 
         /*
          * Нет необходимости проверять все стороны на правильность тругольника

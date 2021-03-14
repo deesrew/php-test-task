@@ -40,10 +40,7 @@ class Circle extends Figures implements iFigure, JsonSerializable
      */
     public function setR($r = false): void
     {
-        $this->r = $r ?: rand(
-                self::MIN_SIDE_LENGTH * pow(10, self::FRACTIONAL_NUMBER),
-                self::MAX_SIDE_LENGTH * pow(10, self::FRACTIONAL_NUMBER)) /
-            pow(10, self::FRACTIONAL_NUMBER);
+        $this->r = $r ?: $this->getRandSide();
     }
 
     /**

@@ -150,6 +150,19 @@ class Figures
     }
 
     /**
+     * Генерируем длину стороны(радиуса)
+     *
+     * @return float|int
+     */
+    public function getRandSide()
+    {
+        return rand(
+                self::MIN_SIDE_LENGTH * pow(10, self::FRACTIONAL_NUMBER),
+                self::MAX_SIDE_LENGTH * pow(10, self::FRACTIONAL_NUMBER)
+            ) / pow(10, self::FRACTIONAL_NUMBER);
+    }
+
+    /**
      * Сортировка фигур по площали
      */
     final public function sortFiguresBySquare()
