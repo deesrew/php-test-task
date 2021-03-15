@@ -73,7 +73,7 @@ class Rectangle extends Figures implements iFigure, JsonSerializable
      */
     public function getSquare()
     {
-        return $this->a * $this->b;
+        return round($this->a * $this->b, self::FRACTIONAL_NUMBER);
     }
 
     /**

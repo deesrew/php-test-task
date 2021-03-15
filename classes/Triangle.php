@@ -118,7 +118,7 @@ class Triangle extends Figures implements iFigure, JsonSerializable
 
         $square = sqrt($p * ($p - $a) * ($p - $b) * ($p - $c));
 
-        return round($square, 2);
+        return round($square, self::FRACTIONAL_NUMBER);
     }
 
     /**

@@ -52,7 +52,7 @@ class Circle extends Figures implements iFigure, JsonSerializable
     {
         $r = $this->r;
         $square = M_PI * pow($r, 2);
-        return round($square, 2);
+        return round($square, self::FRACTIONAL_NUMBER);
     }
 
     /**
